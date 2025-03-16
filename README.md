@@ -2,7 +2,7 @@
 
 Merely trying out random stuff, I have no idea what I'm doing.
 
-I do however want it to be more a community effort rather than 
+I do however want it to be more a community effort rather than one-man show.
 
 Stuff I'm looking for:
 

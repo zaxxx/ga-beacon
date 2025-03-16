@@ -16,8 +16,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: sudo apt-get update && sudo apt-get install -y mingw-w64
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: mingw-w64
+          version: 1.0
 
       - name: Build
         run: make

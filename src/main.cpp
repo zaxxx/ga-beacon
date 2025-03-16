@@ -68,7 +68,16 @@ void LogAllObjects() {
 }
 
 void LoadToxicity() {
-	GetPlayerController()->ConsoleCommand(FString(L"START Push_Toxicity.ut3?game=TgEditor.EdGame?listen=true?bIsLanMatch=true?name=testplayer?team=255?DefaultCharacter=TgEngine.LocalPlayer"), 1);
+	GetPlayerController()->ConsoleCommand(FString(L"START Push_Toxicity.ut3?game=Engine.GameInfo?listen=true?bIsLanMatch=true?name=testplayer?team=255?DefaultCharacter=TgEngine.LocalPlayer?PlayerControllerClassName=TgGame.TgPlayerController"), 1);
+}
+
+void DoSomething() {
+	GetPlayerController()->ConsoleCommand(FString(L"START Moving_Target00.ut3?game=Engine.GameInfo?listen=true?bIsLanMatch=true?name=testplayer?team=255?DefaultCharacter=TgEngine.LocalPlayer?PlayerControllerClassName=TgGame.TgPlayerController"), 1);
+}
+
+void DisablePhysics() {
+	// GetPlayerController()->ConsoleCommand(FString(L"SET Physics.bEnablePhysics false"), 1);
+	GetPlayerController()->SetPhysics(0);
 }
 
 FColor MakeColor(int R, int G, int B, int A)
@@ -171,7 +180,12 @@ FVector WorldToScreen(UCanvas* Canvas, FVector WorldLocation)
 
 void Tick(float Delta) {
 	if (GetAsyncKeyState(VK_END)) {
-		LoadToxicity();
+		DoSomething();
+		Sleep(250);
+	}
+
+	if (GetAsyncKeyState(VK_INSERT)) {
+		DisablePhysics();
 		Sleep(250);
 	}
 }

@@ -31,7 +31,7 @@ On linux you need to set the `WINEDLLOVERRIDES="version=n,b"` environment variab
 
 ## Stuff it does
 
-- Press `HOME` to init the hack (there is no visual feedback - it if fails, the game will probably just crash, otherwise nothing should happen)
+- Press `HOME` to initialize the hack (there is no visual feedback - it if fails, the game will probably just crash, otherwise nothing should happen)
 - Press `END` to load the Pentarch map in free camera mode
 
 That's all. I'm not very good at this. Most of the stuff I try just crashes the game and getting anything to work is tedious. Any ideas and pull requests are welcome and appreciated.

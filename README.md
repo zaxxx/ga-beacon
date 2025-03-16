@@ -17,9 +17,9 @@ Stuff I'm NOT looking for:
 
 Disclaimer: I am not affiliated with the game or the developers in any way. I'm making no profit from this and I never will.
 
-## Building
+## Building & running
 
-There is a github action that should build a `version.dll` file.
+There is a github action that should build a `version.dll` file, which you can find attached to the [latest release](https://github.com/zaxxx/ga-beacon/releases/latest).
 
 This dll should go into the same directory where `GlobalAgenda.exe` is located.
 

@@ -50,7 +50,6 @@ char* allMaps[] = {
 	"Push_IceFloe3_P",
 	"Push_Toxicity",
 	"push_Ravine_P",
-	// where push_atoll... :pepehands:
 
 	// control
 	"Ticket_Datafarm_P",
@@ -68,6 +67,7 @@ char* allMaps[] = {
 	"3P_VolcanoAssault_P",
 	"Ice_GorgeA01_v2",
 	"3P_Him_Arena_P",
+	// where breach_atoll... :pepehands:
 
 	// scramble
 	"Rot_BlackwaterLoch_P",

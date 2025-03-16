@@ -23,7 +23,7 @@ There is a github action that should build a `version.dll` file, which you can f
 
 This dll should go into the same directory where `GlobalAgenda.exe` is located.
 
-You also need to copy the original `version.dll` from your system and put it next to the `GlobalAgenda.exe` file as `version_orig.dll`.
+You also need to copy the original `version.dll` from your system (should be in `system32` directory I believe) and put it next to the `GlobalAgenda.exe` file as `version_orig.dll`.
 
 I have no clue if that's enough. Maybe you need to inject it manually using some tool, I don't know, you tell me. Even better - if it doesn't work, feel free to fix it yourself and send a pull request.
 

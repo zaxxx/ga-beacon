@@ -43,6 +43,126 @@ tProcessEvent pOriginalProcessEvent = (tProcessEvent)0x11347C20;
 #define GNames_Mask				"xx????xxxxx"
 #define GNames_Offset			0x2
 
+char* allMaps[] = {
+	// payload
+	"Push_Dust_P",
+	"Push_IceFloe_P",
+	"Push_IceFloe3_P",
+	"Push_Toxicity",
+	"push_Ravine_P",
+	// where push_atoll... :pepehands:
+
+	// control
+	"Ticket_Datafarm_P",
+	"Ticket_Datafarm2",
+	"Ticket_Datafarm3",
+	"SeaSide_Ticket_P",
+	"SeaSide_Ticket2_P",
+	"SeaSide_Ticket3",
+	"Ticket_Volcano_P",
+
+	// breach
+	"3P_Beachhead3_P",
+	"Climate_Control_P",
+	"3P_Climate_Control3_P",
+	"3P_VolcanoAssault_P",
+	"Ice_GorgeA01_v2",
+	"3P_Him_Arena_P",
+
+	// scramble
+	"Rot_BlackwaterLoch_P",
+	"Rot_Redistribution04",
+	"Rot_Redistribution03",
+	"Rot_Redistribution05",
+	"Rot_Trafalgar_P",
+
+	// acquisition
+	"CTR_DuelStrike_P",
+	"CTR_DuelStrike2_P",
+	"CTR_DuelStrike3_P",
+	"CTR_Recursive_P", // unreleased acquisition map
+
+	// 4v4
+	"MissileComplex_4v4_P",
+	"Ticket_HimLab_4v4",
+	"Ticket_Osprey_4v4_P",
+	"Ticket_Silo_4v4_P",
+
+	// AvA
+	"HEX_AVA_2pt_Theft_Factory1_P",
+	"HEX_AVA_2pt_Theft_Lab1",
+	"HEX_AVA_Defense1_P",
+	"HEX_AVA_Defense2_P",
+	"HEX_AVA_Factory1_P",
+	"HEX_AVA_Factory2_P",
+	"HEX_AVA_Factory3_P",
+	"HEX_AVA_Lab1_P",
+	"HEX_AVA_Lab2_P",
+	"HEX_AVA_Lab3_P",
+	"HEX_AVA_Missile1_P",
+	"HEX_AVA_Plant_P",
+	"HEX_AVA_Plant2_P",
+	"HEX_AVA_Plant3_P",
+	"HEX_AVA_Push_Factory1_P",
+	"HEX_AVA_Push_Lab1_P",
+	"HEX_AVA_Ticket_Neutral",
+
+	// raid
+	"Moving_Target00",
+	"Canyon_Defense00",
+	"Oasis_Checkpoint",
+	"Raid_Halloween_Oasis_P",
+	"Raid_DomeCityDefense_P",
+	"Raid_Commonwealth_Facility", // not working
+
+	// spec ops
+	"1P_CPFactory01_P",
+	"1P_CPFactory02_P",
+	"1P_CPFactory05_P",
+	"1P_CPLab01_P",
+	"1P_CPLab02_P",
+	"1P_CPLab03",
+	"1P_CPLab04_P",
+	"1P_CPLab05_P",
+	"1P_CPMine01_P",
+	"1P_CPMine02_P",
+	"1P_CPMine03_P",
+	"1P_CPMine04_P",
+	"1P_CPMine05_P",
+	"1P_CPColony01_P",
+	"1P_SDColony01_P",
+	"1P_SDColony02_P",
+	"1P_SDColony02_Quest",
+	"1P_SDColony03_P", // unreleased PvE map
+	"1P_SDColony04_P",
+	"1P_SDColony05_P",
+	"1P_SDColony06_P",
+	"1P_SDDweller01_P",
+	"1P_SDDweller02_P",
+	"1P_SDDweller02_Portalled_P",
+	"1P_SDDweller03_P",
+	"1P_SDDweller03_Portalled_P",
+	"1P_SDDweller04_P",
+
+	// open world
+	"DomeCity_V3_MAIN",
+	"SD_Zone_P",
+	"DomeNorth_Zone_P",
+	"DomeNorth_Zone_V2_P",
+	"Dome3_VR_Arena_P",
+
+	// tutorial
+	"Adrenaline_P",
+	"AgencyZero_P",
+	"Inception_ALL",
+	"Skylark_P",
+
+	// dev maps
+	"DEV_landmarkMESH_A01", // crashes
+	"DomeCheck_P",
+	"Seaside_Openzone",
+};
+
 void Log(char* Function) {
 	FILE* fp = fopen("C:\\mylog.txt", "a");
 	fprintf(fp, "\n");
@@ -72,12 +192,17 @@ void LoadToxicity() {
 }
 
 void DoSomething() {
-	GetPlayerController()->ConsoleCommand(FString(L"START Moving_Target00.ut3?game=Engine.GameInfo?listen=true?bIsLanMatch=true?name=testplayer?team=255?DefaultCharacter=TgEngine.LocalPlayer?PlayerControllerClassName=TgGame.TgPlayerController"), 1);
+	GetPlayerController()->ConsoleCommand(FString(L"START 1P_SDColony03_P.ut3?game=TgGame.TgGame_OpenWorld?listen=true?bIsLanMatch=true?name=testplayer?team=255?DefaultCharacter=TgEngine.LocalPlayer?PlayerControllerClassName=TgGame.TgPlayerController"), 1);
 }
 
+
 void DisablePhysics() {
-	// GetPlayerController()->ConsoleCommand(FString(L"SET Physics.bEnablePhysics false"), 1);
-	GetPlayerController()->SetPhysics(0);
+	// GetPlayerController()->SetPhysics(0);
+
+	//class APawn* SpawnTemplatePlayer ( class ATgPlayerController* pTgPC, struct FName sName );
+	// ATgGame* game = reinterpret_cast<ATgGame*>(GameEngine->GetCurrentWorldInfo());
+	// game->SpawnTemplatePlayer(Controller, FName(L"TgGame.TgPlayer"));
+	// GetPlayerController()->eventCheatFly(1);
 }
 
 FColor MakeColor(int R, int G, int B, int A)
@@ -194,6 +319,18 @@ void PostRender ( UCanvas* pCanvas )
 {
 	if ( pCanvas == NULL || GameEngine == NULL || LocalPlayer == NULL )
 		return;
+
+	if (Controller == NULL)
+		return;
+
+	// char buffer[512];
+	// sprintf(buffer, "Controller->Location: %f, %f, %f", Controller->Location.X, Controller->Location.Y, Controller->Location.Z);
+	//
+	// const size_t cSize = strlen(buffer) + 1;
+	// wchar_t* wc = new wchar_t[cSize];
+	// mbstowcs (wc, buffer, cSize);
+	//
+	// DrawString(pCanvas, 100, 50, ColorWhite, false, wc);
 }
 
 bool FindGameTables( void )
